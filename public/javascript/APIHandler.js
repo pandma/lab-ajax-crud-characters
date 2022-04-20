@@ -1,25 +1,32 @@
 class APIHandler {
-  constructor (baseUrl) {
-    this.BASE_URL = baseUrl;
-  }
+    constructor() {
+        this.BASE_URL = axios.create({
+            baseURL: 'https://minions-api.herokuapp.com'
+        })
+    }
 
-  getFullList () {
+    getFullList() {
+        return this.BASE_URL.get('/characters')
+    }
 
-  }
+    getOneRegister(characterId) {
+        return this.BASE_URL.get(`/characters/${characterId}`)
 
-  getOneRegister () {
+    }
 
-  }
+    createOneRegister(characterInfo) {
+        return this.BASE_URL.post(`/characters`, characterInfo);
 
-  createOneRegister () {
+    }
 
-  }
+    updateOneRegister(characterInfo) {
 
-  updateOneRegister () {
+        return this.BASE_URL.put(`/characters/${characterInfo.id}`, characterInfo);
 
-  }
+    }
 
-  deleteOneRegister () {
+    deleteOneRegister(characterId) {
+        return this.BASE_URL.delete(`/characters/${characterId}`)
 
-  }
+    }
 }
